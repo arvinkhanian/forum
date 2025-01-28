@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Details</title>
+</head>
+<body>
+    <h1>{{.Post.Title}}</h1>
+    <p>{{.Post.Content}}</p>
+    <small>Posted by: {{.Post.Username}} on {{.Post.CreatedAt}}</small>
+    
+    <h2>Comments</h2>
+    {{range .Comments}}
+        <div>
+            <p>{{.Content}}</p>
+            <small>Commented by: {{.Username}}</small>
+        </div>
+    {{else}}
+        <p>No comments yet. Be the first to comment!</p>
+    {{end}}
+
+    {{if .UserID}}
+        <h3>Add a Comment</h3>
+        <form action="/createComment" method="POST">
+            <input type="hidden" name="post_id" value="{{.Post.ID}}">
+            <textarea name="content" required></textarea><br><br>
+            <button type="submit">Submit Comment</button>
+        </form>
+    {{else}}
+        <p>You need to be logged in to comment.</p>
+    {{end}}
+    
+</body>
+</html>

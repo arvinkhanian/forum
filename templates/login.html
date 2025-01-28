@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="POST" action="/login">
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <br><br>
+      
+        <div class="password-container">
+            <label>Password:</label>
+            <input type="password" id="password" name="password" required>
+            <span class="toggle-password" onclick="togglePassword()">
+
+                <img id="eye-icon" src=/images/eye_closed.png alt="eye icon">
+            </span>
+        </div>
+        <br>
+        <button type="submit">Kirjaudu</button>
+    </form>
+
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById('password');
+           var passwordType = passwordField.type;
+            var eyeIcon = document.getElementById('eye-icon');
+
+            if (passwordType === "password") {
+                passwordField.type = "text";
+                eyeIcon.src = "/images/eye_open.png";
+            } else {
+                passwordField.type = "password";
+                eyeIcon.src = "/images/eye_closed.png";
+            }
+        }
+    </script>
+</body>
+</html>
